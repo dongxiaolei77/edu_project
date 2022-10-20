@@ -37,7 +37,7 @@ set hive.optimize.union.remove=true;
 set hive.groupby.skewindata=false;
 
 -- 1、总意向量表
-insert overwrite table edu_rpt.rpt_all_intention_count partition(create_date_time_year,create_date_time_month,create_date_time_day)
+insert overwrite table edu_rpt.rpt_all_intention_count
 select
     customer_total,
     origin_type_state,
@@ -48,8 +48,7 @@ select
 from edu_dm.dm_intention_clue where origin_type_state='0' and time_type='day' and group_type='all';
 
 -- 2、学院位置热力图
-insert overwrite table edu_rpt.rpt_intention_area_count partition(create_date_time_year,create_date_time_month,
-                                                                 create_date_time_day)
+insert overwrite table edu_rpt.rpt_intention_area_count
 select
     customer_total,
     origin_type_state,
@@ -61,8 +60,7 @@ select
 from edu_dm.dm_intention_clue where origin_type_state='0' and time_type='day' and group_type='area';
 
 -- 3、意向学科排名表
-insert overwrite table edu_rpt.rpt_intention_subject_count partition(create_date_time_year,create_date_time_month,
-                                                            create_date_time_day)
+insert overwrite table edu_rpt.rpt_intention_subject_count
 select
     customer_total,
     origin_type_state,
@@ -75,8 +73,7 @@ select
 from edu_dm.dm_intention_clue where time_type='day' and group_type='subject';
 
 -- 4、意向校区排名表
-insert overwrite table edu_rpt.rpt_intention_school_count partition(create_date_time_year,create_date_time_month,
-                                                            create_date_time_day)
+insert overwrite table edu_rpt.rpt_intention_school_count
 select
     customer_total,
     origin_type_state,
@@ -89,8 +86,7 @@ select
 from edu_dm.dm_intention_clue where time_type='day' and group_type='school';
 
 -- 5、来源渠道占比
-insert overwrite table edu_rpt.rpt_intention_origin_count partition(create_date_time_year,create_date_time_month,
-                                                            create_date_time_day)
+insert overwrite table edu_rpt.rpt_intention_origin_count
 select
     customer_total,
     origin_type_state,
@@ -102,8 +98,7 @@ select
 from edu_dm.dm_intention_clue where time_type='day' and group_type='origin';
 
 -- 6、意向贡献中心占比
-insert overwrite table edu_rpt.rpt_intention_tdepart_rate partition(create_date_time_year,create_date_time_month,
-                                                            create_date_time_day)
+insert overwrite table edu_rpt.rpt_intention_tdepart_rate
 select
     customer_total,
     origin_type_state,
@@ -116,8 +111,7 @@ select
 from edu_dm.dm_intention_clue where time_type='day' and group_type='tdepart';
 
 -- 7、有效线索量
-insert overwrite table edu_rpt.rpt_valid_clue_count partition(create_date_time_year,create_date_time_month,
-                                                            create_date_time_day)
+insert overwrite table edu_rpt.rpt_valid_clue_count
 select
     clue_nums,
     `origin_type_state`,
