@@ -17,8 +17,8 @@ create database if not exists edu_ods;
 
 use edu_ods;
 -- 建表  ods层
-drop table if exists edu_ods.ods_web_chat_ems_2019_07;
-create table if not exists edu_ods.ods_web_chat_ems_2019_07(    		-- 访问咨询主表
+drop table if exists edu_ods.ods_web_chat_ems;
+create table if not exists edu_ods.ods_web_chat_ems(    		-- 访问咨询主表
         id   	                        int						comment '主键',
         create_date_time                string   			comment '数据创建时间',
         session_id                      string  			comment '会话系统sessionId',
@@ -48,8 +48,8 @@ row format delimited fields terminated by '\t'
 stored as orc
 tblproperties ('orc.compress'='SNAPPY');
 
-drop table if exists edu_ods.ods_web_chat_text_ems_2019_07;
-create table if not exists edu_ods.ods_web_chat_text_ems_2019_07(		-- 访问咨询记录附属表（一对一关系）
+drop table if exists edu_ods.ods_web_chat_text_ems;
+create table if not exists edu_ods.ods_web_chat_text_ems(		-- 访问咨询记录附属表（一对一关系）
         id                   	int		    comment '主键',
         referrer             	string	    comment '上级来源页面',
         from_url             	string	    comment '会话来源页面',
@@ -177,7 +177,7 @@ create table if not exists edu_ods.ods_customer_clue(					-- 客户线索表  --
         technical_directions   	string		comment '技术方向',
         customer_state   		string		comment '当前客户状态',
         valid 					int		        comment '该线索是否是网资有效线索',
-        anticipat_signup_string 	string		    comment '预计报名时间',
+        anticipat_signup_date 	string		    comment '预计报名时间',
         clue_state				string		    comment '线索状态',
         scrm_department_id 		int		        comment 'SCRM内部部门id',
         superior_url 			string		    comment '诸葛获取上级页面URL',
@@ -356,7 +356,7 @@ create table if not exists edu_ods.ods_itcast_subject(				-- 学科表
     partitioned by (start_time string)
     row format delimited fields terminated by '\t'
     stored as orc
-    tblproperties ('orc.compress'='SNAPPYY');
+    tblproperties ('orc.compress'='SNAPPY');
 
 drop table if exists edu_ods.ods_scrm_department;
 create table if not exists edu_ods.ods_scrm_department(				-- 部门表
